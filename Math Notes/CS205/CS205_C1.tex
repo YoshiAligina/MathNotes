@@ -1,0 +1,180 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Discrete Mathematics Notes}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Chapter 1: Logic and Proofs} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Yoshita Aligina} \\ 
+		Rutgers University \\ 
+		September 2024}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+
+\section{Propositional Logic}
+
+\subsection{Propositions}
+\begin{itemize}
+    \item A \textbf{proposition} is a declarative sentence that is either true or false, but not both.
+    \item Examples of propositions:
+    \begin{itemize}
+        \item "The sky is blue." (True)
+        \item "2 + 2 = 5." (False)
+    \end{itemize}
+    \item Non-examples of propositions:
+    \begin{itemize}
+        \item "What time is it?" (Not declarative)
+        \item "x + 2 = 4." (Not a proposition, as the truth value depends on $x$)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Logical Connectives}
+\begin{itemize}
+    \item The main logical connectives are:
+    \begin{itemize}
+        \item \textbf{Negation} ($\neg p$): If $p$ is true, then $\neg p$ is false, and vice versa.
+        \item \textbf{Conjunction} ($p \land q$): True if both $p$ and $q$ are true, otherwise false.
+        \item \textbf{Disjunction} ($p \lor q$): True if at least one of $p$ or $q$ is true, otherwise false.
+        \item \textbf{Implication} ($p \to q$): False only when $p$ is true and $q$ is false, otherwise true.
+        \item \textbf{Biconditional} ($p \leftrightarrow q$): True if $p$ and $q$ have the same truth value.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Truth Tables}
+\begin{itemize}
+    \item Truth tables provide a systematic way to determine the truth value of a proposition based on its components.
+    \item Example: Truth table for $p \to q$.
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            $p$ & $q$ & $p \to q$ \\
+            \hline
+            T & T & T \\
+            T & F & F \\
+            F & T & T \\
+            F & F & T \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{itemize}
+
+\subsection{Equivalence of Propositions}
+\begin{itemize}
+    \item Two propositions are \textbf{logically equivalent} if they have the same truth value in all possible cases. We write $p \equiv q$ to denote this.
+    \item Common equivalences:
+    \begin{itemize}
+        \item De Morgan's Laws: $\neg (p \land q) \equiv \neg p \lor \neg q$, $\neg (p \lor q) \equiv \neg p \land \neg q$
+        \item Implication: $p \to q \equiv \neg p \lor q$
+    \end{itemize}
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Predicate Logic}
+
+\subsection{Predicates and Quantifiers}
+\begin{itemize}
+    \item A \textbf{predicate} is a function $P(x)$ that becomes a proposition when $x$ is given a specific value.
+    \item The two main quantifiers are:
+    \begin{itemize}
+        \item \textbf{Universal Quantifier} ($\forall x \ P(x)$): True if $P(x)$ is true for every $x$ in the domain.
+        \item \textbf{Existential Quantifier} ($\exists x \ P(x)$): True if $P(x)$ is true for at least one $x$ in the domain.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Negating Quantified Statements}
+\begin{itemize}
+    \item Negating a universally quantified statement: $\neg (\forall x \ P(x)) \equiv \exists x \ \neg P(x)$
+    \item Negating an existentially quantified statement: $\neg (\exists x \ P(x)) \equiv \forall x \ \neg P(x)$
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Methods of Proof}
+
+\subsection{Direct Proof}
+\begin{itemize}
+    \item A direct proof assumes the premise $p$ is true and logically deduces that $q$ must also be true.
+\end{itemize}
+
+\subsection{Proof by Contraposition}
+\begin{itemize}
+    \item To prove $p \to q$, prove $\neg q \to \neg p$ instead, as these are logically equivalent.
+\end{itemize}
+
+\subsection{Proof by Contradiction}
+\begin{itemize}
+    \item Assume $p$ is true and $q$ is false, then derive a contradiction.
+\end{itemize}
+
+\subsection{Proof by Exhaustion}
+\begin{itemize}
+    \item Check all possible cases to confirm that the statement holds for all of them.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Common Mistakes in Proofs}
+
+\begin{itemize}
+    \item Assuming what is to be proven (begging the question).
+    \item Confusing a statement and its converse.
+    \item Misusing quantifiers (e.g., confusing $\forall x$ with $\exists x$).
+\end{itemize}
+
+
+
+% ------------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{References.bib}
+
+% ------------------------------------------------------------------------------
+\end{document}
