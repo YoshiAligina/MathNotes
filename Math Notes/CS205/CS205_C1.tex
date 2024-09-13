@@ -19,15 +19,15 @@
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 
-\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheoremstyle[name=Theorem]{thmsty}
 \declaretheorem[style=thmsty,numberwithin=section]{theorem}
 \tcolorboxenvironment{theorem}{colback=LightGray}
 
-\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheoremstyle[name=Proposition]{prosty}
 \declaretheorem[style=prosty,numberlike=theorem]{proposition}
 \tcolorboxenvironment{proposition}{colback=LightOrange}
 
-\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheoremstyle[name=Principle]{prcpsty}
 \declaretheorem[style=prcpsty,numberlike=theorem]{principle}
 \tcolorboxenvironment{principle}{colback=LightGreen}
 
@@ -45,7 +45,7 @@
 		\\ [2.0cm]
 		\HRule{1.5pt} \\
 		\LARGE \textbf{\uppercase{Discrete Mathematics Notes}
-		\HRule{2.0pt} \\ [0.6cm] \LARGE{Chapter 1: Logic and Proofs} \vspace*{10\baselineskip}}
+		\HRule{2.0pt} \\ [0.6cm]  \vspace*{10\baselineskip}}
 		}
 \date{}
 \author{\textbf{Yoshita Aligina} \\ 
@@ -61,117 +61,624 @@
 \newpage
 
 % ------------------------------------------------------------------------------
+% Existing Sections 
+% ------------------------------------------------------------------------------
 
-\section{Propositional Logic}
-
-\subsection{Propositions}
-\begin{itemize}
-    \item A \textbf{proposition} is a declarative sentence that is either true or false, but not both.
-    \item Examples of propositions:
-    \begin{itemize}
-        \item "The sky is blue." (True)
-        \item "2 + 2 = 5." (False)
-    \end{itemize}
-    \item Non-examples of propositions:
-    \begin{itemize}
-        \item "What time is it?" (Not declarative)
-        \item "x + 2 = 4." (Not a proposition, as the truth value depends on $x$)
-    \end{itemize}
-\end{itemize}
-
-\subsection{Logical Connectives}
-\begin{itemize}
-    \item The main logical connectives are:
-    \begin{itemize}
-        \item \textbf{Negation} ($\neg p$): If $p$ is true, then $\neg p$ is false, and vice versa.
-        \item \textbf{Conjunction} ($p \land q$): True if both $p$ and $q$ are true, otherwise false.
-        \item \textbf{Disjunction} ($p \lor q$): True if at least one of $p$ or $q$ is true, otherwise false.
-        \item \textbf{Implication} ($p \to q$): False only when $p$ is true and $q$ is false, otherwise true.
-        \item \textbf{Biconditional} ($p \leftrightarrow q$): True if $p$ and $q$ have the same truth value.
-    \end{itemize}
-\end{itemize}
-
-\subsection{Truth Tables}
-\begin{itemize}
-    \item Truth tables provide a systematic way to determine the truth value of a proposition based on its components.
-    \item Example: Truth table for $p \to q$.
-    \begin{center}
-        \begin{tabular}{|c|c|c|}
-            \hline
-            $p$ & $q$ & $p \to q$ \\
-            \hline
-            T & T & T \\
-            T & F & F \\
-            F & T & T \\
-            F & F & T \\
-            \hline
-        \end{tabular}
-    \end{center}
-\end{itemize}
-
-\subsection{Equivalence of Propositions}
-\begin{itemize}
-    \item Two propositions are \textbf{logically equivalent} if they have the same truth value in all possible cases. We write $p \equiv q$ to denote this.
-    \item Common equivalences:
-    \begin{itemize}
-        \item De Morgan's Laws: $\neg (p \land q) \equiv \neg p \lor \neg q$, $\neg (p \lor q) \equiv \neg p \land \neg q$
-        \item Implication: $p \to q \equiv \neg p \lor q$
-    \end{itemize}
-\end{itemize}
+% Assume previous sections (Functions, Derivatives, etc.) are here.
 
 % ------------------------------------------------------------------------------
-\section{Predicate Logic}
+% New Sections
+% ------------------------------------------------------------------------------
 
-\subsection{Predicates and Quantifiers}
+\section{Logical Operators and Propositions}
+
+\subsection{Binary Logic}
+Limiting ourselves to true or false values.
+
+\subsection{Logical Operators}
+
+\subsubsection{AND ($\land$)}
+True if both propositions are true.
+
+\textbf{Truth Table:}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $A$ & $B$ & $A \land B$ \\
+        \hline
+        True & True & True \\
+        True & False & False \\
+        False & True & False \\
+        False & False & False \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{OR ($\lor$)}
+True if at least one of the propositions is true.
+
+\textbf{Truth Table:}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $A$ & $B$ & $A \lor B$ \\
+        \hline
+        True & True & True \\
+        True & False & True \\
+        False & True & True \\
+        False & False & False \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Exclusive OR (XOR, $\oplus$)}
+True if exactly one of the propositions is true.
+
+\textbf{Truth Table:}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $A$ & $B$ & $A \oplus B$ \\
+        \hline
+        True & True & False \\
+        True & False & True \\
+        False & True & True \\
+        False & False & False \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{Compound Propositions}
+
+\subsection{Example: $A \lor (B \land \neg C)$}
+Determine the truth value based on the truth values of $A$, $B$, and $C$.
+
+\subsection{Truth Table Construction}
+For three propositions ($A$, $B$, $C$), generate $2^3 = 8$ rows.
+
+\subsubsection{Constructing Truth Tables}
+\textbf{Number of Rows}: $2^n$, where $n$ is the number of propositions.
+
+\textbf{Filling the Table}:
 \begin{itemize}
-    \item A \textbf{predicate} is a function $P(x)$ that becomes a proposition when $x$ is given a specific value.
-    \item The two main quantifiers are:
+    \item Alternate true/false values for each proposition systematically.
+    \item Top half of rows: $A$ is true.
+    \item Bottom half of rows: $A$ is false.
+    \item Further subdivide based on $B$ and $C$.
+\end{itemize}
+
+\subsection{Logical Operations with Multiple Propositions}
+
+\subsubsection{Example: Evaluating $A \lor (B \land \neg C)$}
+
+\textbf{Steps}:
+\begin{enumerate}
+    \item Evaluate $\neg C$.
+    \item Evaluate $B \land \neg C$.
+    \item Combine $A \lor (B \land \neg C)$.
+\end{enumerate}
+
+\textbf{Detailed Evaluation}:
+\begin{itemize}
+    \item $\neg C$: Flip the truth value of $C$.
+    \item $B \land \neg C$: True only if both $B$ and $\neg C$ are true.
+    \item $A \lor (B \land \neg C)$: True if either $A$ is true or $B \land \neg C$ is true.
+\end{itemize}
+
+\section{Logical Problems}
+
+\subsection{The Bartender and Logicians Problem}
+
+\subsubsection{Scenario}
+Three logicians are asked if they want a drink.
+
+\subsubsection{Logician Responses}
+\begin{itemize}
+    \item Logician 1 says, "I don't know."
+    \item Logician 2 also says, "I don't know."
+    \item Logician 3 responds based on the previous responses.
+\end{itemize}
+
+\subsubsection{Interpretation}
+\paragraph{Logician 1}
+\begin{itemize}
+    \item Did not know if all three wanted a drink.
+    \item Implies at least one other logician might or might not want a drink.
+\end{itemize}
+
+\paragraph{Logician 2}
+\begin{itemize}
+    \item Hearing Logician 1's response, still did not know.
+    \item Implies Logician 2 cannot be certain if all three want a drink based on Logician 1's answer.
+\end{itemize}
+
+\subsubsection{Logical Model}
+
+\textbf{Propositions}:
+\begin{itemize}
+    \item $A$ = Logician 1 wants a drink.
+    \item $B$ = Logician 2 wants a drink.
+    \item $C$ = Logician 3 wants a drink.
+\end{itemize}
+
+\textbf{Bartender's Question}: Determine the truth value of $A \land B \land C$.
+
+\paragraph{Logician 1's Response}
+\begin{itemize}
+    \item If Logician 1 didn’t want a drink ($A$ is false), then $A \land B \land C$ is false.
+    \item Since Logician 1 says "I don't know," this suggests $A$ must be true, as uncertainty arises only if $A$ is true.
+\end{itemize}
+
+\paragraph{Logician 2's Response}
+\begin{itemize}
+    \item Similarly, Logician 2's uncertainty implies $B$ is true.
+\end{itemize}
+
+\paragraph{Conclusion}
+\begin{itemize}
+    \item Given Logicians 1 and 2 are uncertain, $C$ must also be true.
+    \item Therefore, $A \land B \land C$ is true.
+\end{itemize}
+
+\subsection{Knights and Liars Problem}
+
+\subsubsection{Scenario}
+Two individuals, $K_1$ and $K_2$, are either knights (who always tell the truth) or liars (who always lie).
+
+\subsubsection{Propositions}
+\begin{itemize}
+    \item $A$: $K_1$ is a knight.
+    \item $B$: $K_2$ is a knight.
+\end{itemize}
+
+\subsubsection{Statements to Analyze}
+\begin{itemize}
+    \item Statement 1: $K_1$ says, "K_2$ is a liar."
+    \item Statement 2: $K_2$ says something about $K_1$ (assuming it is similar to Statement 1).
+\end{itemize}
+
+\subsubsection{Truth Table for Analysis}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $A$ & $B$ & $K_1$'s Statement & $K_2$'s Statement \\
+        \hline
+        True & True & False (Contradiction) & - \\
+        True & False & True & - \\
+        False & True & False & - \\
+        False & False & True & - \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Analysis}
+\paragraph{Case 1: Both $K_1$ and $K_2$ are knights.}
+\begin{itemize}
+    \item $K_1$ says $K_2$ is a liar, which is a contradiction.
+\end{itemize}
+
+\paragraph{Case 2: $K_1$ is a knight, and $K_2$ is a liar.}
+\begin{itemize}
+    \item $K_1$'s statement is true.
+    \item Consistent scenario.
+\end{itemize}
+
+\paragraph{Case 3: $K_1$ is a liar, and $K_2$ is a knight.}
+\begin{itemize}
+    \item $K_1$'s statement is false.
+    \item $K_2$ is a knight, consistent.
+\end{itemize}
+
+\paragraph{Case 4: Both $K_1$ and $K_2$ are liars.}
+\begin{itemize}
+    \item $K_1$'s statement is false.
+    \item Consistent scenario.
+\end{itemize}
+
+\paragraph{Conclusion}
+The only consistent assignments are:
+\begin{itemize}
+    \item $K_1$ is a knight and $K_2$ is a liar.
+    \item $K_1$ is a liar and $K_2$ is a knight.
+    \item Both are liars.
+\end{itemize}
+
+\subsubsection{Terms}
+\begin{itemize}
+    \item \textbf{Consistent}: A variable assignment that satisfies all statements.
+    \item \textbf{Satisfiable}: A system where there is at least one consistent assignment.
+    \item \textbf{Contradiction}: A proposition or system of propositions that cannot be true under any assignment.
+\end{itemize}
+
+\section{Implication in Propositional Logic}
+
+\subsection{Implication ($A \rightarrow B$)}
+This means if $A$ is true, then $B$ must also be true.
+
+\textbf{Truth Table for Implication}:
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $A$ & $B$ & $A \rightarrow B$ \\
+        \hline
+        True & True & True \\
+        True & False & False \\
+        False & True & True \\
+        False & False & True \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Examples}
+\begin{enumerate}
+    \item \textbf{Example 1}: "If it rains ($A$), the ground will be wet ($B$)."
     \begin{itemize}
-        \item \textbf{Universal Quantifier} ($\forall x \ P(x)$): True if $P(x)$ is true for every $x$ in the domain.
-        \item \textbf{Existential Quantifier} ($\exists x \ P(x)$): True if $P(x)$ is true for at least one $x$ in the domain.
+        \item If $A$ (rain) is true, $B$ (ground is wet) must be true.
+        \item If $A$ is false, $B$ can be either true or false.
+    \end{itemize}
+    
+    \item \textbf{Example 2}: "If there is a front at the lecture hall ($A$), then you will get a passing grade ($B$)."
+    \begin{itemize}
+        \item If $A$ is true, $B$ must be true.
+        \item If $A$ is false, $B$ can be true or false without any contradiction.
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{False Implication}
+\textbf{Only Case of False Implication}:
+\begin{itemize}
+    \item If $A$ is true and $B$ is false, then $A \rightarrow B$ is false.
+\end{itemize}
+
+\textbf{Example}:
+\begin{itemize}
+    \item If $A$ states “The sky is blue” and $B$ states “It is raining,” then if the sky is blue ($A$ is true) but it is not raining ($B$ is false), the implication $A \rightarrow B$ is false.
+\end{itemize}
+
+\subsubsection{Implications in Practice}
+\begin{itemize}
+    \item $A \rightarrow B$ is used to describe a relationship where if $A$ holds, $B$ must hold.
+    \item \textbf{Inconsistencies}: If $A \rightarrow B$ is stated, but $A$ is true and $B$ is false, there is an inconsistency.
+\end{itemize}
+
+\section{Bi-conditional Statements}
+
+\subsection{Bi-conditional ($A \leftrightarrow B$)}
+"A if and only if B" means both $A$ and $B$ must have the same truth value.
+
+\textbf{Truth Table for Bi-conditional}:
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $A$ & $B$ & $A \leftrightarrow B$ \\
+        \hline
+        True & True & True \\
+        False & False & True \\
+        True & False & False \\
+        False & True & False \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Examples of Bi-conditional Statements}
+\begin{enumerate}
+    \item \textbf{Example 1}:
+    \begin{itemize}
+        \item \textbf{Statement}: "N is even if and only if $N^2$ is even."
+        \item \textbf{Reasoning}: If $N$ is even, then $N^2$ is even. Conversely, if $N^2$ is even, then $N$ must be even.
+        \item \textbf{Verification}:
+        \begin{itemize}
+            \item $N = 4$: Even, and $4^2 = 16$ (even).
+            \item $N = 3$: Not even, and $3^2 = 9$ (not even).
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Example 2}:
+    \begin{itemize}
+        \item \textbf{Statement}: "N is a perfect square if and only if N is an even number."
+        \item \textbf{Reasoning}: Not all perfect squares are even (e.g., $9$ is a perfect square but odd).
+        \item \textbf{Verification}:
+        \begin{itemize}
+            \item $N = 4$ (even, perfect square): $2^2 = 4$.
+            \item $N = 9$ (odd, perfect square): $3^2 = 9$.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{False Bi-conditional Cases}
+\begin{itemize}
+    \item If $A$ is true and $B$ is false, then the bi-conditional $A \leftrightarrow B$ is false because $A$ and $B$ do not share the same truth value.
+\end{itemize}
+
+\section{Relationships between Logical Statements}
+
+\subsection{Implication ($A \rightarrow B$)}
+$A$ is a condition for $B$. $B$ does not necessarily cause $A$.
+
+\subsection{Bi-conditional ($A \leftrightarrow B$)}
+$A$ and $B$ are mutually dependent. Both must be either true or false together.
+
+\subsection{Causation Interpretation}
+\begin{itemize}
+    \item \textbf{Implication as Causation}: "A implies B" can be interpreted as $A$ being a cause for $B$.
+    \item \textbf{Reverse}: If $B$ is true, it does not necessarily cause $A$ to be true.
+\end{itemize}
+
+\section{Concepts and Terms}
+
+\subsection{Consistent Variable Assignment}
+A set of variable values that makes all statements in a system true.
+
+\subsection{Satisfiable System}
+A system where there exists at least one consistent variable assignment.
+
+\subsection{Contradiction}
+A statement or system that has no possible consistent variable assignment.
+
+\subsection{Fundamental Concepts}
+\begin{itemize}
+    \item \textbf{Consistency}: Ensuring that all statements in a logical system can be true at the same time.
+    \item \textbf{Satisfiability}: Finding at least one assignment where all statements are true.
+    \item \textbf{Contradiction}: Identifying when no assignment can make all statements true.
+\end{itemize}
+
+\section{Further Analysis of Implications and Logical Relationships}
+
+\subsection{Square and Rectangle}
+
+\subsubsection{Statement}
+"Any square is a rectangle."
+
+\subsubsection{Reasoning}
+All squares are rectangles because they meet all the criteria of a rectangle (four right angles and opposite sides equal).
+
+\subsubsection{Contrapositive Statement}
+"If something is a square, then it is a rectangle."
+
+\subsubsection{Statement}
+"A rectangle is not necessarily a square."
+
+\subsubsection{Reasoning}
+A rectangle does not have to have all four sides of equal length, which is a requirement for squares.
+
+\subsubsection{Implication Example}
+\begin{itemize}
+    \item Let $A$: "A shape is a square."
+    \item Let $B$: "The shape is a rectangle."
+    \item \textbf{Implication} ($A \rightarrow B$):
+    \begin{itemize}
+        \item If a shape is a square ($A$), then it is a rectangle ($B$).
+        \item The implication is true because all squares are rectangles, though not all rectangles are squares.
     \end{itemize}
 \end{itemize}
 
-\subsection{Negating Quantified Statements}
+\subsubsection{Implications and their Truth Values}
+
+\textbf{General Form}: "A implies B" ($A \rightarrow B$)
+
+\textbf{True Cases}:
 \begin{itemize}
-    \item Negating a universally quantified statement: $\neg (\forall x \ P(x)) \equiv \exists x \ \neg P(x)$
-    \item Negating an existentially quantified statement: $\neg (\exists x \ P(x)) \equiv \forall x \ \neg P(x)$
+    \item True $\rightarrow$ True: True
+    \item False $\rightarrow$ True: True
+    \item False $\rightarrow$ False: True
 \end{itemize}
+
+\textbf{False Case}:
+\begin{itemize}
+    \item True $\rightarrow$ False: False
+\end{itemize}
+
+\subsection{Bi-conditional Statements}
+
+\subsubsection{Bi-conditional ($A \leftrightarrow B$)}
+"A if and only if B" means both $A$ and $B$ must have the same truth value.
+
+\textbf{Truth Table for Bi-conditional}:
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $A$ & $B$ & $A \leftrightarrow B$ \\
+        \hline
+        True & True & True \\
+        False & False & True \\
+        True & False & False \\
+        False & True & False \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Examples of Bi-conditional Statements}
+
+\paragraph{Example 1}
+\begin{itemize}
+    \item \textbf{Statement}: "N is even if and only if $N^2$ is even."
+    \item \textbf{Reasoning}: If $N$ is even, then $N^2$ is even. Conversely, if $N^2$ is even, then $N$ must be even.
+    \item \textbf{Verification}:
+    \begin{itemize}
+        \item $N = 4$: Even, and $4^2 = 16$ (even).
+        \item $N = 3$: Not even, and $3^2 = 9$ (not even).
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Example 2}
+\begin{itemize}
+    \item \textbf{Statement}: "N is a perfect square if and only if N is an even number."
+    \item \textbf{Reasoning}: Not all perfect squares are even (e.g., $9$ is a perfect square but odd).
+    \item \textbf{Verification}:
+    \begin{itemize}
+        \item $N = 4$ (even, perfect square): $2^2 = 4$.
+        \item $N = 9$ (odd, perfect square): $3^2 = 9$.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{False Bi-conditional Cases}
+\begin{itemize}
+    \item If $A$ is true and $B$ is false, then the bi-conditional $A \leftrightarrow B$ is false because $A$ and $B$ do not share the same truth value.
+\end{itemize}
+
+\subsection{Relationship between Logical Statements}
+
+\subsubsection{Implication ($A \rightarrow B$)}
+$A$ is a condition for $B$. $B$ does not necessarily cause $A$.
+
+\subsubsection{Bi-conditional ($A \leftrightarrow B$)}
+$A$ and $B$ are mutually dependent. Both must be either true or false together.
+
+\subsection{Causation Interpretation}
+
+\begin{itemize}
+    \item \textbf{Implication as Causation}: The statement "$A$ implies $B$" can be interpreted as $A$ being a cause for $B$.
+    \item \textbf{Reverse}: If $B$ is true, it does not necessarily cause $A$ to be true.
+\end{itemize}
+
+\section{Summary}
+
+\subsection{Implications}
+\begin{itemize}
+    \item Represents a conditional relationship where $B$ follows if $A$ is true.
+    \item Only false if $A$ is true and $B$ is false.
+\end{itemize}
+
+\subsection{Bi-conditionals}
+\begin{itemize}
+    \item Both $A$ and $B$ must have the same truth value.
+    \item True when both are true or both are false.
+\end{itemize}
+
+\subsection{Applications}
+Useful for understanding relationships and logical dependencies between statements. 
+\begin{itemize}
+    \item \textbf{Implications} often represent causative relationships.
+    \item \textbf{Bi-conditionals} represent equivalence.
+\end{itemize}
+% ------------------------------------------------------------------------------
+% Continued from last section
+% ------------------------------------------------------------------------------
+
+\section{Logical Reasoning in Problem Solving}
+
+\subsection{Implications and Inferences}
+
+In logical reasoning, the relationships between propositions can be modeled to draw conclusions. One key concept is the use of \textit{implication}.
+
+\subsubsection{Modus Ponens}
+
+If $A \rightarrow B$ and $A$ is true, then we can conclude $B$ is true. This is called \textbf{Modus Ponens}.
+
+\[
+\text{If } A \rightarrow B \text{ and } A \text{ is true, then } B \text{ is true.}
+\]
+
+\textbf{Example}:
+\begin{itemize}
+    \item \textit{If it is raining (A), the ground is wet (B).}
+    \item \textit{It is raining (A).}
+    \item \textit{Therefore, the ground is wet (B).}
+\end{itemize}
+
+\subsubsection{Modus Tollens}
+
+If $A \rightarrow B$ and $B$ is false, then we can conclude $A$ is false. This is called \textbf{Modus Tollens}.
+
+\[
+\text{If } A \rightarrow B \text{ and } B \text{ is false, then } A \text{ is false.}
+\]
+
+\textbf{Example}:
+\begin{itemize}
+    \item \textit{If it is raining (A), the ground is wet (B).}
+    \item \textit{The ground is not wet (B is false).}
+    \item \textit{Therefore, it is not raining (A is false).}
+\end{itemize}
+
+\section{Logical Puzzles and Models}
+
+\subsection{Breeze and Pit Problem}
+
+\subsubsection{Scenario}
+You are in a grid where some cells have pits, and breezes indicate the presence of nearby pits.
+
+\subsubsection{Logical Model}
+\begin{itemize}
+    \item Proposition $B(x, y)$: There is a breeze at location $(x, y)$.
+    \item Proposition $P(x, y)$: There is a pit at location $(x, y)$.
+\end{itemize}
+
+\subsubsection{Rules}
+\begin{itemize}
+    \item If there is a pit in a neighboring cell, there will be a breeze in the current cell.
+    \item Formalized as: $P(x-1, y) \lor P(x+1, y) \lor P(x, y-1) \lor P(x, y+1) \rightarrow B(x, y)$.
+\end{itemize}
+
+\textbf{Example of Reasoning}:
+\begin{itemize}
+    \item If there is a breeze at $(2, 2)$, and no pits at $(1, 2)$ and $(2, 3)$, you can conclude there is a pit at $(3, 2)$.
+\end{itemize}
+
+\section{Rules of Inference}
+
+\subsection{Chain Rule}
+
+If $A \rightarrow B$ and $B \rightarrow C$, then $A \rightarrow C$. This is known as the \textbf{Chain Rule}.
+
+\[
+\text{If } A \rightarrow B \text{ and } B \rightarrow C, \text{ then } A \rightarrow C.
+\]
+
+\textbf{Example}:
+\begin{itemize}
+    \item \textit{If it rains (A), the ground gets wet (B).}
+    \item \textit{If the ground is wet (B), the grass grows (C).}
+    \item \textit{Therefore, if it rains (A), the grass grows (C).}
+\end{itemize}
+
+\subsection{Contrapositive}
+
+The contrapositive of $A \rightarrow B$ is $\neg B \rightarrow \neg A$. This is logically equivalent to the original implication.
+
+\[
+\text{If } A \rightarrow B, \text{ then } \neg B \rightarrow \neg A.
+\]
+
+\textbf{Example}:
+\begin{itemize}
+    \item \textit{If it is raining (A), the ground is wet (B).}
+    \item \textit{If the ground is not wet ($\neg B$), then it is not raining ($\neg A$).}
+\end{itemize}
+
+\section{Logical Paradoxes and Challenges}
+
+\subsection{The Liar Paradox}
+
+This paradox arises when someone says, "I am lying." If the statement is true, then the speaker is lying, which means the statement is false. If the statement is false, then the speaker is telling the truth, which contradicts the initial claim.
+
+\[
+\text{"This statement is false."}
+\]
+
+\textbf{Logical Breakdown}:
+\begin{itemize}
+    \item Let $L$ be the proposition "This statement is false."
+    \item If $L$ is true, then the statement is false, which leads to a contradiction.
+    \item If $L$ is false, then the statement is true, leading to another contradiction.
+\end{itemize}
+
+\section{Summary of Key Logical Concepts}
+
+\begin{itemize}
+    \item \textbf{Modus Ponens}: If $A \rightarrow B$ and $A$ is true, then $B$ is true.
+    \item \textbf{Modus Tollens}: If $A \rightarrow B$ and $B$ is false, then $A$ is false.
+    \item \textbf{Contrapositive}: The contrapositive of $A \rightarrow B$ is $\neg B \rightarrow \neg A$, and they are logically equivalent.
+    \item \textbf{Implication}: $A \rightarrow B$ states that if $A$ is true, then $B$ must also be true.
+    \item \textbf{Bi-conditional}: $A \leftrightarrow B$ means both $A$ and $B$ must have the same truth value.
+    \item \textbf{Chain Rule}: If $A \rightarrow B$ and $B \rightarrow C$, then $A \rightarrow C$.
+    \item \textbf{Contradiction}: A proposition that cannot be true under any assignment of truth values.
+\end{itemize}
+
+
 
 % ------------------------------------------------------------------------------
-\section{Methods of Proof}
-
-\subsection{Direct Proof}
-\begin{itemize}
-    \item A direct proof assumes the premise $p$ is true and logically deduces that $q$ must also be true.
-\end{itemize}
-
-\subsection{Proof by Contraposition}
-\begin{itemize}
-    \item To prove $p \to q$, prove $\neg q \to \neg p$ instead, as these are logically equivalent.
-\end{itemize}
-
-\subsection{Proof by Contradiction}
-\begin{itemize}
-    \item Assume $p$ is true and $q$ is false, then derive a contradiction.
-\end{itemize}
-
-\subsection{Proof by Exhaustion}
-\begin{itemize}
-    \item Check all possible cases to confirm that the statement holds for all of them.
-\end{itemize}
-
-% ------------------------------------------------------------------------------
-\section{Common Mistakes in Proofs}
-
-\begin{itemize}
-    \item Assuming what is to be proven (begging the question).
-    \item Confusing a statement and its converse.
-    \item Misusing quantifiers (e.g., confusing $\forall x$ with $\exists x$).
-\end{itemize}
-
-
-
+% References (if needed)
 % ------------------------------------------------------------------------------
 \bibliographystyle{IEEEtran}
 \bibliography{References.bib}

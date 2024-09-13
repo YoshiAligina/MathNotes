@@ -1,0 +1,390 @@
+
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\title{
+    \normalsize \textsc{}
+    \\ [2.0cm]
+    \HRule{1.5pt} \\
+    \LARGE \textbf{\uppercase{Discrete Mathematics Notes}}
+    \HRule{2.0pt} \\
+    [0.6cm]
+    \LARGE{Comprehensive Guide}
+    \vspace*{10\baselineskip}
+}
+
+\date{}
+\author{\textbf{Your Name} \\ University Name \\ September 2024}
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction to Discrete Mathematics}
+
+\subsection{Definition and Scope}
+Discrete mathematics is the study of mathematical structures that are fundamentally discrete rather than continuous. It deals with objects that can assume only distinct, separated values.
+
+\subsection{Importance in Computer Science}
+Discrete mathematics forms the foundation of computer science, providing the mathematical tools necessary for:
+\begin{itemize}
+    \item Algorithm analysis
+    \item Data structure design
+    \item Cryptography
+    \item Computer architecture
+    \item Software engineering
+\end{itemize}
+
+\section{Set Theory}
+
+\subsection{Basic Concepts}
+A set is a well-defined collection of distinct objects.
+
+\subsubsection{Set Notation}
+Sets are typically denoted using curly braces:
+$$A = \{1, 2, 3, 4, 5\}$$
+
+\subsubsection{Set Builder Notation}
+$$B = \{x \mid x \text{ is an even number less than 10}\}$$
+
+\subsection{Set Operations}
+
+\subsubsection{Union}
+The union of sets A and B, denoted $A \cup B$, contains all elements that are in A, or B, or both.
+$$A \cup B = \{x \mid x \in A \text{ or } x \in B\}$$
+
+\subsubsection{Intersection}
+The intersection of sets A and B, denoted $A \cap B$, contains all elements that are in both A and B.
+$$A \cap B = \{x \mid x \in A \text{ and } x \in B\}$$
+
+\subsubsection{Difference}
+The difference of sets A and B, denoted $A \setminus B$, contains all elements that are in A but not in B.
+$$A \setminus B = \{x \mid x \in A \text{ and } x \notin B\}$$
+
+\subsubsection{Complement}
+The complement of set A, denoted $A^c$, contains all elements in the universal set that are not in A.
+$$A^c = \{x \mid x \notin A\}$$
+
+\subsection{Set Properties}
+
+\begin{theorem}[Distributive Laws]
+For any sets A, B, and C:
+\begin{align*}
+A \cup (B \cap C) &= (A \cup B) \cap (A \cup C) \\
+A \cap (B \cup C) &= (A \cap B) \cup (A \cap C)
+\end{align*}
+\end{theorem}
+
+\begin{theorem}[De Morgan's Laws]
+For any sets A and B:
+\begin{align*}
+(A \cup B)^c &= A^c \cap B^c \\
+(A \cap B)^c &= A^c \cup B^c
+\end{align*}
+\end{theorem}
+
+\section{Logic and Proofs}
+
+\subsection{Propositional Logic}
+
+\subsubsection{Propositions}
+A proposition is a declarative statement that is either true or false, but not both.
+
+\subsubsection{Logical Operators}
+
+\paragraph{Negation ($\neg$)}
+The negation of a proposition p, denoted $\neg p$, is true when p is false and false when p is true.
+
+\paragraph{Conjunction ($\land$)}
+The conjunction of propositions p and q, denoted $p \land q$, is true only when both p and q are true.
+
+\paragraph{Disjunction ($\lor$)}
+The disjunction of propositions p and q, denoted $p \lor q$, is true when at least one of p or q is true.
+
+\paragraph{Exclusive OR ($\oplus$)}
+The exclusive OR of propositions p and q, denoted $p \oplus q$, is true when exactly one of p or q is true.
+
+\paragraph{Implication ($\rightarrow$)}
+The implication $p \rightarrow q$ is false only when p is true and q is false.
+
+\paragraph{Biconditional ($\leftrightarrow$)}
+The biconditional $p \leftrightarrow q$ is true when p and q have the same truth value.
+
+\subsection{Predicate Logic}
+
+\subsubsection{Predicates}
+A predicate is a proposition whose truth depends on the value of one or more variables.
+
+\subsubsection{Quantifiers}
+
+\paragraph{Universal Quantifier ($\forall$)}
+$\forall x P(x)$ means "for all x, P(x) is true"
+
+\paragraph{Existential Quantifier ($\exists$)}
+$\exists x P(x)$ means "there exists an x such that P(x) is true"
+
+\subsection{Methods of Proof}
+
+\subsubsection{Direct Proof}
+Assume the hypothesis and use logical reasoning to reach the conclusion.
+
+\subsubsection{Proof by Contraposition}
+To prove $p \rightarrow q$, prove its contrapositive $\neg q \rightarrow \neg p$.
+
+\subsubsection{Proof by Contradiction}
+Assume the negation of the statement and derive a contradiction.
+
+\subsubsection{Mathematical Induction}
+\begin{enumerate}
+    \item Prove the base case (usually n = 1 or n = 0).
+    \item Assume the statement is true for some k.
+    \item Prove the statement is true for k + 1.
+\end{enumerate}
+
+\section{Number Theory}
+
+\subsection{Divisibility}
+An integer a divides an integer b if there exists an integer k such that b = ak.
+
+\subsection{Prime Numbers}
+A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+
+\subsection{Greatest Common Divisor (GCD)}
+The GCD of two or more integers is the largest positive integer that divides each of the integers.
+
+\begin{theorem}[Euclidean Algorithm]
+To find the GCD of a and b:
+\begin{enumerate}
+    \item If b = 0, return a.
+    \item Otherwise, return GCD(b, a mod b).
+\end{enumerate}
+\end{theorem}
+
+\subsection{Least Common Multiple (LCM)}
+The LCM of two or more integers is the smallest positive integer that is divisible by each of the integers.
+
+\begin{theorem}
+For any two positive integers a and b:
+$$LCM(a,b) = \frac{|ab|}{GCD(a,b)}$$
+\end{theorem}
+
+\section{Functions}
+
+\subsection{Definition}
+A function f from a set A to a set B is a rule that assigns to each element of A exactly one element of B.
+
+\subsection{Types of Functions}
+
+\subsubsection{Injective (One-to-One)}
+A function f is injective if $f(a) = f(b)$ implies $a = b$ for all a and b in the domain.
+
+\subsubsection{Surjective (Onto)}
+A function f from A to B is surjective if for every element b in B, there exists an element a in A such that f(a) = b.
+
+\subsubsection{Bijective}
+A function is bijective if it is both injective and surjective.
+
+\subsection{Composition of Functions}
+If f : A → B and g : B → C, then the composition g ∘ f : A → C is defined as (g ∘ f)(x) = g(f(x)).
+
+\section{Graph Theory}
+
+\subsection{Basic Definitions}
+A graph G = (V, E) consists of a set V of vertices and a set E of edges connecting pairs of vertices.
+
+\subsection{Types of Graphs}
+
+\subsubsection{Undirected Graphs}
+Edges have no direction.
+
+\subsubsection{Directed Graphs (Digraphs)}
+Edges have a direction.
+
+\subsubsection{Weighted Graphs}
+Edges have associated weights or costs.
+
+\subsection{Graph Properties}
+
+\subsubsection{Connectivity}
+A graph is connected if there is a path between every pair of vertices.
+
+\subsubsection{Eulerian Paths and Circuits}
+An Eulerian path visits every edge exactly once. An Eulerian circuit is an Eulerian path that starts and ends at the same vertex.
+
+\subsubsection{Hamiltonian Paths and Cycles}
+A Hamiltonian path visits every vertex exactly once. A Hamiltonian cycle is a Hamiltonian path that returns to the starting vertex.
+
+\subsection{Graph Algorithms}
+
+\subsubsection{Depth-First Search (DFS)}
+Explores as far as possible along each branch before backtracking.
+
+\subsubsection{Breadth-First Search (BFS)}
+Explores all the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
+
+\subsubsection{Dijkstra's Algorithm}
+Finds the shortest path between nodes in a graph.
+
+\section{Combinatorics}
+
+\subsection{Counting Principles}
+
+\subsubsection{Sum Rule}
+If a task can be done in m ways, and another task can be done in n ways, and the two tasks cannot be done at the same time, then there are m + n ways to do either task.
+
+\subsubsection{Product Rule}
+If a task can be done in m ways, and another independent task can be done in n ways, then the two tasks can be done together in m × n ways.
+
+\subsection{Permutations}
+A permutation of n distinct objects is an ordered arrangement of these objects.
+$$P(n) = n!$$
+
+\subsection{Combinations}
+A combination of n objects taken r at a time is a selection of r objects from a set of n objects where order doesn't matter.
+$$C(n,r) = \binom{n}{r} = \frac{n!}{r!(n-r)!}$$
+
+\subsection{Binomial Theorem}
+$$(x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k$$
+
+\section{Probability Theory}
+
+\subsection{Basic Probability}
+The probability of an event A is the number of favorable outcomes divided by the total number of possible outcomes, assuming all outcomes are equally likely.
+
+\subsection{Conditional Probability}
+The probability of event A given that event B has occurred is:
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+
+\subsection{Bayes' Theorem}
+$$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$$
+
+\subsection{Random Variables}
+A random variable is a variable whose possible values are numerical outcomes of a random phenomenon.
+
+\subsubsection{Expected Value}
+For a discrete random variable X:
+$$E(X) = \sum_{x} x P(X = x)$$
+
+\subsubsection{Variance}
+$$Var(X) = E((X - E(X))^2) = E(X^2) - (E(X))^2$$
+
+\section{Recurrence Relations}
+
+\subsection{Definition}
+A recurrence relation is an equation that recursively defines a sequence where each term is a function of the previous terms.
+
+\subsection{Linear Recurrence Relations}
+A linear recurrence relation of degree k has the form:
+$$a_n = c_1a_{n-1} + c_2a_{n-2} + ... + c_ka_{n-k} + f(n)$$
+
+\subsection{Solving Recurrence Relations}
+
+\subsubsection{Characteristic Equation Method}
+For homogeneous linear recurrence relations.
+
+\subsubsection{Method of Generating Functions}
+Useful for both homogeneous and non-homogeneous recurrence relations.
+
+\section{Formal Languages and Automata Theory}
+
+\subsection{Formal Languages}
+A formal language is a set of strings of symbols that are constructed according to specific rules.
+
+\subsection{Regular Expressions}
+A notation for describing patterns in strings.
+
+\subsection{Finite Automata}
+A mathematical model of computation that can be in one of a finite number of states.
+
+\subsubsection{Deterministic Finite Automata (DFA)}
+A finite state machine that accepts or rejects strings of symbols and only produces a unique computation of the automaton for each input string.
+
+\subsubsection{Non-deterministic Finite Automata (NFA)}
+Similar to a DFA, but allows for multiple possible transitions from a given state on the same input.
+
+\subsection{Context-Free Grammars}
+A set of recursive rewriting rules used to generate patterns of strings.
+
+\section{Cryptography}
+
+\subsection{Symmetric Key Cryptography}
+Uses the same key for both encryption and decryption.
+
+\subsection{Public Key Cryptography}
+Uses a public key for encryption and a private key for decryption.
+
+\subsection{RSA Algorithm}
+A widely used public-key cryptosystem based on the difficulty of factoring large integers.
+
+\section{Boolean Algebra}
+
+\subsection{Boolean Functions}
+Functions that operate on binary inputs and produce binary outputs.
+
+\subsection{Logic Gates}
+Physical implementations of Boolean functions.
+
+\subsection{Minimization of Boolean Functions}
+Techniques to simplify Boolean expressions, such as Karnaugh maps and the Quine-McCluskey algorithm.
+
+\section{Summary}
+
+Discrete mathematics provides the foundation for many areas of computer science and mathematics. Key topics include:
+
+\begin{itemize}
+    \item Set theory and logic
+    \item Number theory and functions
+    \item Graph theory and combinatorics
+    \item Probability and recurrence relations
+    \item Formal languages and automata theory
+    \item Cryptography and Boolean algebra
+\end{itemize}
+
+Understanding these concepts
+
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/31605656/a37cd280-d4a0-4ccf-89ad-a9216a58806a/regressionvro.txt
+[2] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/31605656/23952b69-fd2d-4cef-9aaa-739cd50c6d65/paste.txt
+[3] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/31605656/8a019c2b-a96b-4442-8d21-3a9e57ecbc31/paste-2.txt

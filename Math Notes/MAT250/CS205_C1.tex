@@ -1,0 +1,213 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Linear Algebra Lecture Notes}}
+		\HRule{2.0pt} \\ [0.6cm]  \vspace*{10\baselineskip}
+		}
+\date{}
+\author{\textbf{Yoshita Aligina} \\ 
+		Rutgers University \\ 
+		September 2024}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Vectors}
+
+\subsection{Vector Example}
+\begin{itemize}
+    \item Example vector: $32x$
+    \item In $H_2$, $X$ moves to the beginning: $H_1, H_2$
+    \item $K$ is specified as $2, 4K, 2$ with $D = 15$, and $1$
+    \item Query: What will $D$ be?
+\end{itemize}
+
+\section{Matrix Dimensions}
+
+\subsection{Matrix Basics}
+\begin{itemize}
+    \item $n$: Number of rows
+    \item $m$: Number of columns
+\end{itemize}
+
+\subsection{Examples of Vectors and Matrices}
+For $x \in \mathbb{R}$ (real numbers):
+\begin{itemize}
+    \item For $x = 1, 2, 3, 17$
+    \item $n=1$ corresponds to a one-dimensional space
+    \item If $n=2$, it results in a two-dimensional plane, including $x_1$ and $x_2$
+\end{itemize}
+
+\section{Linear vs Nonlinear Functions}
+
+\subsection{Properties of Linear Functions}
+\begin{itemize}
+    \item Additivity: $f(x + y) = f(x) + f(y)$
+    \item Homogeneity: $f(cx) = c f(x)$
+\end{itemize}
+
+Nonlinear functions do not satisfy these properties. If a function fails to satisfy either additivity or homogeneity, it is considered nonlinear.
+
+\subsection{Linear Function Analysis}
+- The general rule for linearity: 
+\[
+f(c \cdot \text{vector}) = c \cdot f(\text{vector})
+\]
+- Nonlinearity arises if this relationship introduces extra terms like $c^2$.
+
+\subsection{Example Calculation}
+For $f(c \cdot \text{vector})$, calculate the result and verify if nonlinearity is introduced.
+
+\section{General Form of Linear Functions}
+
+The general form of a linear function is:
+\[
+f(x) = a \cdot x + b
+\]
+If the function is linear, it will not contain any constants or nonlinear terms.
+
+\section{Matrix Multiplication and Dimensions}
+
+\subsection{Matrix Representation}
+For a matrix $A$ with dimensions $m \times n$:
+\begin{itemize}
+    \item $m$: Number of rows
+    \item $n$: Number of columns
+\end{itemize}
+
+\subsection{Matrix Multiplication}
+To multiply matrix $A$ by vector $x$, the dimensions must match:
+\[
+(A \times x)_i = \sum_{j=1}^{n} a_{ij} x_j
+\]
+The result will be an $m \times 1$ vector.
+
+\section{Linear Systems of Equations}
+
+\subsection{System Representation}
+A system of linear equations can be written as:
+\[
+A x = b
+\]
+Where:
+\begin{itemize}
+    \item $A$: $m \times n$ matrix of coefficients
+    \item $x$: $n \times 1$ vector of variables
+    \item $b$: $m \times 1$ vector of constants
+\end{itemize}
+
+\subsection{Example System}
+\[
+A = \begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \dots & a_{mn}
+\end{bmatrix}
+,
+x = \begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+,
+b = \begin{bmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m
+\end{bmatrix}
+\]
+
+\section{Gaussian Elimination}
+
+Gaussian elimination is a method for solving systems of linear equations. It transforms a matrix into row-echelon form using row operations:
+\begin{itemize}
+    \item Row swaps
+    \item Multiplying a row by a constant
+    \item Adding or subtracting rows
+\end{itemize}
+
+\subsection{Back Substitution}
+Once the matrix is in row-echelon form, back substitution can be used to find the solution starting from the last row upwards.
+
+\section{Matrix Multiplication Example}
+
+Given matrix $A$ of size $2 \times 3$ and vector $x$ of size $3 \times 1$:
+\[
+A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}
+,
+x = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+\]
+The product $A \times x$ results in:
+\[
+A \times x = \begin{bmatrix} 1 \cdot x_1 + 2 \cdot x_2 + 3 \cdot x_3 \\ 4 \cdot x_1 + 5 \cdot x_2 + 6 \cdot x_3 \end{bmatrix}
+\]
+
+\section{Consistency in Linear Systems}
+
+A system is consistent if there is at least one solution. The stability of the system is determined by how small changes in $b$ affect the solution.
+
+\section{Range and Image of a Function}
+
+A point $y$ is in the range of function $f$ if there exists an $x$ in the domain such that:
+\[
+f(x) = y
+\]
+
+\section{Example of a System with Single Equation}
+
+When $m = 1$ and $n = 1$, the system simplifies to a single equation:
+\[
+a_{11} x_1 = b_1
+\]
+
+\end{document}
